@@ -1,0 +1,2 @@
+.diveContainer{display:-ms-grid;display:grid;-ms-grid-columns:[col0] 100% [col1];grid-template-columns:[col0] 100% [col1];-ms-grid-rows:[row0] 15% [row1] 85% [row2];grid-template-rows:[row0] 15% [row1] 85% [row2];width:100vw;height:100vh}.headerContainer{grid-area:row0 / col0 / row1 / col1}.contentComplexContainer{grid-area:row1 / col0 / row2 / col1}
+/*# sourceMappingURL=dive.module.css.map */

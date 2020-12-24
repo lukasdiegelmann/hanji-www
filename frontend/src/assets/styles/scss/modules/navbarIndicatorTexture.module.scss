@@ -1,0 +1,7 @@
+@import "../lib.scss";
+
+.navbarIndicatorTexture {
+    @include maxSize();
+
+    color: black;
+}

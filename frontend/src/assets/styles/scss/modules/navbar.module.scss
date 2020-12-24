@@ -1,0 +1,14 @@
+@import "../lib.scss";
+
+.navbar {
+    @include maxSize();
+    @include createGridOverlay();
+}
+
+.indicator {
+    @include attachToGridOverlay(1);
+}
+
+.children {
+    @include attachToGridOverlay(0);
+}

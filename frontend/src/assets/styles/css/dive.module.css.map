@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,cAAc,AAAC,CACX,OAAO,CAAE,IAAI,CACb,qBAAqB,EAAG,IAAI,EAAE,IAAI,EAAE,IAAI,EACxC,kBAAkB,EAAG,IAAI,EAAE,GAAG,EAAE,IAAI,EAAE,GAAG,EAAE,IAAI,EAC/C,KAAK,CAAE,KAAK,CACZ,MAAM,CAAE,KAAK,CAChB,AAED,AAAA,gBAAgB,AAAC,CACb,SAAS,CAAE,yBAAyB,CACvC,AAED,AAAA,wBAAwB,AAAC,CACrB,SAAS,CAAE,yBAAyB,CACvC",
+    "sources": [
+        "../scss/modules/dive.module.scss"
+    ],
+    "names": [],
+    "file": "dive.module.css"
+}

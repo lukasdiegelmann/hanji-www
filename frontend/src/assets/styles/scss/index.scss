@@ -1,0 +1,13 @@
+@import "./lib.scss";
+
+@include createFontFace(
+    "Source Han Serif Heavy",
+    "../../fonts/SourceHanSerif-Heavy.otf"
+);
+
+@include createFontFace(
+    "Source Han Serif Regular",
+    "../../fonts/SourceHanSerif-Regular.otf"
+);
+
+@include polishDom();
