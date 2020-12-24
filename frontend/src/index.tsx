@@ -1,13 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+import "./assets/styles/css/index.css";
 import { store } from "./app/store";
 import { Provider } from "react-redux";
 import * as serviceWorker from "./serviceWorker";
+import Dive from "./components/scaffolding/dive/Dive";
 
 ReactDOM.render(
     <React.StrictMode>
-        <Provider store={store}></Provider>
+        <Provider store={store}>
+            <Dive></Dive>
+        </Provider>
     </React.StrictMode>,
     document.getElementById("root")
 );
