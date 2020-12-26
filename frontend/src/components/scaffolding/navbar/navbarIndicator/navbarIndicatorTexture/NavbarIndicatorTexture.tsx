@@ -1,10 +1,29 @@
 import React from "react";
-import styles from "../../../../../assets/styles/css/navbarIndicatorTexture.module.css";
 
 const NavbarIndicatorTexture = () => {
     const kanjiAsUnicode = "\u30DC"; // https://unicodelookup.com/#ボ/1
 
-    return <div style={{ backgroundColor: "red" }}>{kanjiAsUnicode}</div>;
+    return (
+        <div
+            style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "180px",
+                width: "180px",
+                border: "10px black solid",
+            }}
+        >
+            <b
+                style={{
+                    fontSize: "100px",
+                    fontFamily: "Source Han Serif Heavy",
+                }}
+            >
+                {kanjiAsUnicode}
+            </b>
+        </div>
+    );
 };
 
 export default NavbarIndicatorTexture;

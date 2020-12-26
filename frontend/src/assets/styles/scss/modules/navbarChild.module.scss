@@ -1,0 +1,19 @@
+@import "../lib.scss";
+
+.navbarChild {
+    @include centerChildren();
+
+    flex-basis: 0;
+    flex-grow: 1;
+}
+
+.navbarChildViewport {
+    @include centerChildren();
+
+    width: 50%;
+    height: 70%;
+}
+
+.navbarChildText {
+    font-family: "Source Han Serif Heavy";
+}

@@ -2,13 +2,29 @@
 
 .navbar {
     @include maxSize();
-    @include createGridOverlay();
+
+    display: grid;
+    grid-template-columns: [col0] 100% [col1];
+    grid-template-rows: [row0] 97% [row1] 3% [row1];
+
+    overflow: hidden;
 }
 
-.indicator {
-    @include attachToGridOverlay(1);
+.navbarIndicator {
+    grid-area: row0 / col0 / row1 / col1;
+    z-index: 1;
+    transition: transform $animationDuration * 0.8 ease;
 }
 
-.children {
-    @include attachToGridOverlay(0);
+.navbarChildren {
+    grid-area: row0 / col0 / row1 / col1;
+    z-index: 0;
+    display: flex;
+    transition: transform $animationDuration * 0.8 ease;
+}
+
+.navbarBorder {
+    grid-area: row1 / col0 / row2 / col1;
+    z-index: 2;
+    background-color: black;
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./assets/styles/css/index.css";
-import { store } from "./app/store";
+import { store } from "./state/store";
 import { Provider } from "react-redux";
 import * as serviceWorker from "./serviceWorker";
 import Dive from "./components/scaffolding/dive/Dive";
