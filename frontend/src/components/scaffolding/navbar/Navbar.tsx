@@ -4,18 +4,18 @@ import React from "react";
 import NavbarIndicator from "./navbarIndicator/NavbarIndicator";
 import NavbarChild from "./navbarChild/NavbarChild";
 // locals.react.hooks
-import useAsyncStyles from "../../../utils/customHooks/useAsyncStyles";
+import useStyles from "../../../utils/customHooks/useStyles";
 // locals.styles
 import styles from "../../../assets/styles/css/navbar.module.css";
 
 const navbarChildrenConfig = [
-    { text: "/commands" },
-    { text: "/contribute" },
-    { text: "/setup" },
+    { title: "/docs", kanji: "\u672C" /* 本 */, linkTo: "/docs" },
+    { title: "/setup", kanji: "\u5099" /* 備 */, linkTo: "/setup" },
+    { title: "/contribute", kanji: "\u8CC7" /* 資 */, linkTo: "/contribute" },
 ];
 
 const Navbar: React.FunctionComponent = () => {
-    const asyncStyles = useAsyncStyles({
+    const [getStyles, setStyles] = useStyles({
         navbarChildren: {
             transform: "translate3d(0, 100%, 0)",
         },
@@ -25,34 +25,25 @@ const Navbar: React.FunctionComponent = () => {
     });
 
     const handleMouseEnter = () => {
-        asyncStyles([
-            [
-                {
-                    navbarChildren: {
-                        transform: "translate3d(0, 0, 0)" as any,
-                    },
-                    navbarIndicator: {
-                        transform: "translate3d(0, -100%, 0)" as any,
-                    },
-                },
-                0,
-            ],
-        ]);
+        setStyles({
+            navbarChildren: {
+                transform: "translate3d(0, 0, 0)" as any,
+            },
+            navbarIndicator: {
+                transform: "translate3d(0, -100%, 0)" as any,
+            },
+        });
     };
+
     const handleMouseLeave = () => {
-        asyncStyles([
-            [
-                {
-                    navbarChildren: {
-                        transform: "translate3d(0, 100%, 0)" as any,
-                    },
-                    navbarIndicator: {
-                        transform: "translate3d(0, 0, 0)" as any,
-                    },
-                },
-                0,
-            ],
-        ]);
+        setStyles({
+            navbarChildren: {
+                transform: "translate3d(0, 100%, 0)",
+            },
+            navbarIndicator: {
+                transform: "translate3d(0, 0, 0)",
+            },
+        });
     };
 
     return (
@@ -63,13 +54,13 @@ const Navbar: React.FunctionComponent = () => {
         >
             <div
                 className={styles.navbarIndicator}
-                style={asyncStyles("navbarIndicator")}
+                style={getStyles().navbarIndicator}
             >
                 <NavbarIndicator></NavbarIndicator>
             </div>
             <div
                 className={styles.navbarChildren}
-                style={asyncStyles("navbarChildren")}
+                style={getStyles().navbarChildren}
             >
                 {navbarChildrenConfig.map((navbarChildConfig, i) => (
                     <NavbarChild key={i} {...navbarChildConfig} />

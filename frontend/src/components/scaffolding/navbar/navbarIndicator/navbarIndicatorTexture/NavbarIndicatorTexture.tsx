@@ -1,7 +1,7 @@
 import React from "react";
 
 const NavbarIndicatorTexture = () => {
-    const kanjiAsUnicode = "\u30DC"; // https://unicodelookup.com/#ボ/1
+    const kanjiAsUnicode = "\u30DC"; // ボ
 
     return (
         <div

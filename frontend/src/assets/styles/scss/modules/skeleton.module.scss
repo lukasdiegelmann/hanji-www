@@ -1,3 +1,5 @@
+@import "../lib.scss";
+
 .diveContainer {
     display: grid;
     grid-template-columns: [col0] 100% [col1];
@@ -12,4 +14,8 @@
 
 .contentComplexContainer {
     grid-area: row1 / col0 / row2 / col1;
+}
+
+.mainContainer {
+    @include maxSize();
 }

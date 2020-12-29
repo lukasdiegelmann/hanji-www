@@ -6,7 +6,6 @@
     display: grid;
     grid-template-columns: [col0] 100% [col1];
     grid-template-rows: [row0] 97% [row1] 3% [row1];
-
     overflow: hidden;
 }
 
@@ -20,7 +19,19 @@
     grid-area: row0 / col0 / row1 / col1;
     z-index: 0;
     display: flex;
-    transition: transform $animationDuration * 0.8 ease;
+    transition: all $animationDuration * 0.8 ease;
+    visibility: hidden;
+    perspective: 50px;
+}
+
+.navbarChildren:hover > * {
+    opacity: 0.4;
+    transform: translate3d(0, 0, -5px);
+}
+
+.navbarChildren > *:hover {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
 }
 
 .navbarBorder {

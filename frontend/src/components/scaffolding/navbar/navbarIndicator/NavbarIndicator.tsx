@@ -52,9 +52,14 @@ const renderToCanvas = async (
     //
     // This is thanks to the <foreignObject /> tag which allows XHTML to be
     // inserted into a svg tag or file, respectively.
-    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><foreignObject width="100%" height="100%"><div xmlns="http://www.w3.org/1999/xhtml">${renderToStaticMarkup(
-        <Component />
-    )}</div></foreignObject></svg>`;
+    const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200">
+        <foreignObject width="100%" height="100%">
+            <div xmlns="http://www.w3.org/1999/xhtml">${renderToStaticMarkup(
+                <Component />
+            )}</div>
+        </foreignObject>
+    </svg>`;
     const url = `data:image/svg+xml;charset=utf8,${encodeURIComponent(svg)}`;
 
     // This will generate a window.Image instance based on the url templated

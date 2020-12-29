@@ -4,12 +4,12 @@ import "./assets/styles/css/index.css";
 import { store } from "./state/store";
 import { Provider } from "react-redux";
 import * as serviceWorker from "./serviceWorker";
-import Dive from "./components/scaffolding/dive/Dive";
+import Skeleton from "./components/scaffolding/skeleton/Skeleton";
 
 ReactDOM.render(
     <React.StrictMode>
         <Provider store={store}>
-            <Dive></Dive>
+            <Skeleton />
         </Provider>
     </React.StrictMode>,
     document.getElementById("root")

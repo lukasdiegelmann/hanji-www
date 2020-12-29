@@ -1,3 +1,5 @@
+$primaryColor: #3ea4ca;
+$secondaryColor: #730d47;
 $animationDuration: 600ms;
 
 @mixin maxSize() {
@@ -20,6 +22,11 @@ $animationDuration: 600ms;
 @mixin attachToGridOverlay($zIndex) {
     grid-area: row0 / col0 / row1 / col1;
     z-index: $zIndex;
+}
+
+@mixin centerSelf() {
+    justify-self: center;
+    align-self: center;
 }
 
 @mixin createFontFace($font-family, $src) {

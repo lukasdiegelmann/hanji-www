@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "AAEA,AAAA,gBAAgB,AAAC,CCCb,KAAK,CAAE,IAAI,CACX,MAAM,CAAE,IAAI,CAIZ,OAAO,CAAE,IAAI,CACb,WAAW,CAAE,MAAM,CACnB,eAAe,CAAE,MAAM,CDL1B",
+    "mappings": "AAEA,AAAA,gBAAgB,AAAC,CCGb,KAAK,CAAE,IAAI,CACX,MAAM,CAAE,IAAI,CAIZ,OAAO,CAAE,IAAI,CACb,WAAW,CAAE,MAAM,CACnB,eAAe,CAAE,MAAM,CDP1B",
     "sources": [
         "../scss/modules/navbarIndicator.module.scss",
         "../scss/lib.scss"
