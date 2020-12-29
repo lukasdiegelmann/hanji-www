@@ -1,6 +1,6 @@
 @import "../lib.scss";
 
-.diveContainer {
+.skeletonContainer {
     display: grid;
     grid-template-columns: [col0] 100% [col1];
     grid-template-rows: [row0] 15% [row1] 85% [row2];
@@ -14,8 +14,14 @@
 
 .contentComplexContainer {
     grid-area: row1 / col0 / row2 / col1;
+    display: flex;
+    flex-direction: column;
+}
+
+.footerContainer {
+    flex-shrink: 0;
 }
 
 .mainContainer {
-    @include maxSize();
+    flex: 1 0 auto;
 }

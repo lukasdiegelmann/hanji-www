@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect } from "react";
-import getRelativeFontSize from "../../../../utils/misc/getRelativeFontSize";
+import getRelativePxls from "../../../../utils/facilities/getRelativePxls";
 import useCleanup from "../../../../utils/customHooks/useCleanup";
 import useStyles from "../../../../utils/customHooks/useStyles";
 import styles from "../../../../assets/styles/css/navbarChild.module.css";
@@ -24,11 +24,11 @@ const NavbarChild: React.FunctionComponent<{
             opacity: "0%",
         },
         navbarChildContentText: {
-            fontSize: getRelativeFontSize("20>>1920:1080"),
+            fontSize: getRelativePxls(20, 1920, 1080, true),
             textDecoration: props.options?.underlined ? "underline" : "none",
         },
         navbarChildKanjiText: {
-            fontSize: getRelativeFontSize("30>>1920:1080"),
+            fontSize: getRelativePxls(30, 1920, 1080, true),
         },
         test: {
             backgroundColor: "black",
@@ -80,12 +80,13 @@ const NavbarChild: React.FunctionComponent<{
     };
 
     const handleWindowResize = useCallback(() => {
+        console.log();
         setStyles({
             navbarChildContentText: {
-                fontSize: getRelativeFontSize("20>>1920:1080"),
+                fontSize: getRelativePxls(20, 1920, 1080, true),
             },
             navbarChildKanjiText: {
-                fontSize: getRelativeFontSize("30>>1920:1080"),
+                fontSize: getRelativePxls(30, 1920, 1080, true),
             },
         });
     }, [setStyles]);

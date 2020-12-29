@@ -159,6 +159,14 @@ const NavbarIndicator: React.FunctionComponent<
             // directly inside the cube we are about to create.
             camera.position.z = 5;
 
+            // A 'Pointlight' is created to make the 'MeshToonMaterial' visible,
+            // which will be used to construct the cube. It will shine a white
+            // light from a specific angle, such that the cubes starts shining a
+            // bit.
+            const light = new THREE.PointLight(0xffffff, 1, 200);
+            light.position.set(10, 10, 10);
+            scene.add(light);
+
             // Notice that this is not the canvas that will be used to draw the
             // scene on it is used to draw the texture of the cube on! This is
             // done by converting a jsx element to a svg to a image that is then
@@ -167,7 +175,9 @@ const NavbarIndicator: React.FunctionComponent<
 
             // This will initiate the process of drawing the jsx element to a
             // canvas...
-            await renderToCanvas(canvas, () => <NavbarIndicatorTexture />);
+            await renderToCanvas(canvas, () => (
+                <NavbarIndicatorTexture size={180} />
+            ));
 
             // Once that is done it is converted to a 'CanvasTexture' which is a
             // class of the THREE API.
@@ -177,7 +187,7 @@ const NavbarIndicator: React.FunctionComponent<
             // a sphere or in this case a box and of a material like 'Phong' or
             // 'Basic'.
             const geometry = new THREE.BoxGeometry(3, 3, 3);
-            const material = new THREE.MeshBasicMaterial({
+            const material = new THREE.MeshToonMaterial({
                 // The texture is used as the skin of the material. It is
                 // wrapped around it using the UVMapping of the
                 // 'CanvasStructure'.

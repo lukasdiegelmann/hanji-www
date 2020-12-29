@@ -11,3 +11,7 @@
 );
 
 @include polishDom();
+
+* {
+    user-select: none;
+}

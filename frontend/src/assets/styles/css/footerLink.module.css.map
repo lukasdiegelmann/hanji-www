@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,WAAW,AAAC,CACR,MAAM,CAAE,EAAE,CACV,gBAAgB,CAAE,KAAK,CACvB,KAAK,CAAE,KAAK,CACf",
+    "sources": [
+        "../scss/modules/footerLink.module.scss",
+        "../scss/lib.scss"
+    ],
+    "names": [],
+    "file": "footerLink.module.css"
+}

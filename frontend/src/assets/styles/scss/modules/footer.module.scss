@@ -1,0 +1,25 @@
+@import "../lib.scss";
+
+.footer {
+    display: grid;
+    grid-template-columns: [col0] 15% [col1] 70% [col2] 15% [col3];
+    grid-template-rows: [row0] 100% [row1];
+    width: 100%;
+    background-color: black;
+}
+
+.footerIconContainer {
+    @include centerChildren();
+
+    grid-area: row0 / col0 / row1 / col1;
+}
+
+.footerIconContainer div {
+    box-shadow: 0px 0px 5px 1px white;
+}
+
+.footerLinks {
+    @include centerChildren();
+
+    grid-area: row0 / col1 / row1 / col2;
+}

@@ -1,6 +1,8 @@
 import React from "react";
 
-const NavbarIndicatorTexture = () => {
+const NavbarIndicatorTexture: React.FunctionComponent<{
+    size: number;
+}> = (props) => {
     const kanjiAsUnicode = "\u30DC"; // ボ
 
     return (
@@ -9,14 +11,15 @@ const NavbarIndicatorTexture = () => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                height: "180px",
-                width: "180px",
-                border: "10px black solid",
+                height: `${props.size}px`,
+                width: `${props.size}px`,
+                border: `${props.size / 18}px black solid`,
+                backgroundColor: "white",
             }}
         >
             <b
                 style={{
-                    fontSize: "100px",
+                    fontSize: `${props.size / 1.8}px`,
                     fontFamily: "Source Han Serif Heavy",
                 }}
             >
