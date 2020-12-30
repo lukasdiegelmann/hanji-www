@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./assets/styles/css/index.css";
-import { store } from "./state/store";
+import { store } from "./@intrinsic/store";
 import { Provider } from "react-redux";
 import * as serviceWorker from "./serviceWorker";
 import Skeleton from "./components/scaffolding/skeleton/Skeleton";

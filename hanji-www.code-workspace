@@ -6,13 +6,6 @@
     ],
     "settings": {
         "editor.defaultFormatter": "esbenp.prettier-vscode",
-        "prettier.tabWidth": 4,
-        "liveSassCompile.settings.formats": [
-            {
-                "format": "compressed",
-                "extensionName": ".css",
-                "savePath": "/frontend/src/assets/styles/css"
-            }
-        ]
+        "prettier.tabWidth": 4
     }
 }

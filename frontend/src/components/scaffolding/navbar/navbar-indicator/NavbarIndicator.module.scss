@@ -1,0 +1,6 @@
+@import "../../../../@assets/styles/lib.scss";
+
+.navbar-indicator {
+    @include maxSize();
+    @include centerChildren();
+}

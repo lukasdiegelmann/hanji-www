@@ -1,0 +1,55 @@
+@import "../../../@assets/styles/lib.scss";
+
+.navbar {
+    @include maxSize();
+
+    display: grid;
+    grid-template-columns: [col0] 100% [col1];
+    grid-template-rows: [row0] 97% [row1] 3% [row1];
+    overflow: hidden;
+}
+
+.navbar__indicator {
+    grid-area: row0 / col0 / row1 / col1;
+    z-index: 1;
+    transition: transform $animationDuration * 0.8 ease;
+}
+
+.navbar__children {
+    grid-area: row0 / col0 / row1 / col1;
+    z-index: 0;
+    display: flex;
+    transition: all $animationDuration * 0.8 ease;
+    visibility: hidden;
+    perspective: 50px;
+}
+
+.navbar__children:hover > * {
+    opacity: 0.4;
+    transform: translate3d(0, 0, -5px);
+}
+
+.navbar__children > *:hover {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+
+.navbar__border {
+    grid-area: row1 / col0 / row2 / col1;
+    z-index: 2;
+    background-color: black;
+}
+
+.navbar__child {
+    @include centerChildren();
+
+    flex-basis: 0;
+    flex-grow: 1;
+    transition: all $animationDuration * 0.8 cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.navbar_child_viewport {
+    width: 60%;
+    height: 70%;
+    visibility: visible;
+}

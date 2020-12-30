@@ -1,0 +1,43 @@
+@import "../../../@assets/styles/lib.scss";
+
+@include createFontFace(
+    "Source Han Serif Heavy",
+    "../fonts/SourceHanSerif-Heavy.otf"
+);
+
+@include createFontFace(
+    "Source Han Serif Regular",
+    "../fonts/SourceHanSerif-Regular.otf"
+);
+
+@include polishDom();
+
+* {
+    user-select: none;
+}
+
+.skeleton {
+    display: grid;
+    grid-template-columns: [col0] 100% [col1];
+    grid-template-rows: [row0] 15% [row1] 85% [row2];
+    width: 100vw;
+    height: 100vh;
+}
+
+.header {
+    grid-area: row0 / col0 / row1 / col1;
+}
+
+.complex {
+    grid-area: row1 / col0 / row2 / col1;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer {
+    flex-shrink: 0;
+}
+
+.content {
+    flex: 1 0 auto;
+}

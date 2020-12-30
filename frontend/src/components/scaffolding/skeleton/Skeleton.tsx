@@ -1,9 +1,10 @@
 import React, { Suspense } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Message from "../../others/message/Message";
+import Message from "../../essence/displays/message/Message";
 import Navbar from "../navbar/Navbar";
 import Footer from "../footer/Footer";
 import styles from "../../../assets/styles/css/skeleton.module.css";
+import scss from "./Skeleton.module.scss";
 
 const Home = React.lazy(() => import("../../pages/home/Home"));
 const Docs = React.lazy(() => import("../../pages/docs/Docs"));
@@ -15,13 +16,13 @@ const Contribute = React.lazy(
 const Skeleton: React.FunctionComponent = () => {
     return (
         <Router>
-            <div className={styles.skeletonContainer}>
-                <div className={styles.headerContainer}>
+            <div className={scss["skeleton"]}>
+                <div className={scss["header"]}>
                     <Navbar />
                 </div>
-                <div className={styles.contentComplexContainer}>
+                <div className={scss["complex"]}>
                     <Suspense fallback={<Message />}>
-                        <div className={styles.mainContainer}>
+                        <div className={scss["content"]}>
                             <Route exact path="/" component={Home} />
                             <Route exact path="/docs" component={Docs} />
                             <Route
@@ -31,7 +32,7 @@ const Skeleton: React.FunctionComponent = () => {
                             />
                             <Route exact path="/setup" component={Setup} />
                         </div>
-                        <div className={styles.footerContainer}>
+                        <div className={scss["footer"]}>
                             <Footer />
                         </div>
                     </Suspense>

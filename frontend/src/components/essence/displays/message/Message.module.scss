@@ -1,0 +1,23 @@
+@import "../../../../@assets/styles/lib.scss";
+
+.message {
+    @include maxSize();
+    @include createGridOverlay();
+}
+
+#message__particles {
+    @include maxSize();
+    @include attachToGridOverlay(0);
+}
+
+.message__content {
+    @include attachToGridOverlay(1);
+    @include centerSelf();
+
+    width: 30%;
+    height: 20%;
+    display: flex;
+    transition: all $animationDuration * 0.8 ease;
+    visibility: hidden;
+    perspective: 50px;
+}

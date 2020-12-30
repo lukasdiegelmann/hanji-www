@@ -1,0 +1,46 @@
+@import "../../../../@assets/styles/lib.scss";
+
+.hover-button {
+    @include maxSize();
+    @include createGridOverlay();
+
+    background-color: black;
+}
+
+.hover-button__text-container {
+    @include attachToGridOverlay(0);
+    @include centerChildren();
+}
+
+.hover-button__text {
+    color: white;
+    font-family: "Source Han Serif Heavy";
+}
+
+.hover-button__title-container {
+    @include attachToGridOverlay(2);
+    @include centerChildren();
+}
+
+.hover-button__title {
+    color: black;
+    font-family: "Source Han Serif Heavy";
+
+    transition: filter $animationDuration * 0.5 ease;
+}
+
+.hover-button__click-container {
+    @include attachToGridOverlay(1);
+    @include createGridOverlay();
+
+    overflow: hidden;
+}
+
+.hover-button__click__door {
+    @include attachToGridOverlay(0);
+
+    width: 101%;
+    height: 101%;
+    background-color: $secondaryColor;
+    transition: transform $animationDuration * 0.5 ease;
+}
