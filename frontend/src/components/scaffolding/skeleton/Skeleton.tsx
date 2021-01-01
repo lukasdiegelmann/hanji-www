@@ -2,8 +2,6 @@ import React, { Suspense } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Message from "../../essence/displays/message/Message";
 import Navbar from "../navbar/Navbar";
-import Footer from "../footer/Footer";
-import styles from "../../../assets/styles/css/skeleton.module.css";
 import scss from "./Skeleton.module.scss";
 
 const Home = React.lazy(() => import("../../pages/home/Home"));
@@ -12,6 +10,7 @@ const Setup = React.lazy(() => import("../../pages/setup/Setup"));
 const Contribute = React.lazy(
     () => import("../../pages/contribute/Contribute")
 );
+const Footer = React.lazy(() => import("../footer/Footer"));
 
 const Skeleton: React.FunctionComponent = () => {
     return (

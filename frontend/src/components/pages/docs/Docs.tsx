@@ -1,7 +1,7 @@
 import React from "react";
 
 const Docs: React.FunctionComponent = (props) => {
-    return <div>Docs</div>;
+    return <div></div>;
 };
 
 export default Docs;

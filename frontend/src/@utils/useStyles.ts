@@ -1,3 +1,7 @@
+/**
+ * @author lukasdiegelmann
+ */
+
 import CSS from "csstype";
 import { useRef, useState } from "react";
 

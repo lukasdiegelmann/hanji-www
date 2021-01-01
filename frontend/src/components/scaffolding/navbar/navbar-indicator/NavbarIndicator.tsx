@@ -104,7 +104,7 @@ const NavbarIndicator: React.FunctionComponent<
             //
             // Note: The aspect ratio will change as the window dimensions
             // change as well. This is to ensure an best as possible viewing
-            // experience of the user.
+            // experience for the user.
             const initialWidth = navbarIndicatorRef.current.clientWidth;
             const initialHeight = navbarIndicatorRef.current.clientHeight;
 
@@ -135,6 +135,10 @@ const NavbarIndicator: React.FunctionComponent<
             // This is the first use case of the initial dimensions of the DOM
             // reference - The size of the renderers DOM element is set here.
             renderer.setSize(initialWidth, initialHeight);
+
+            // Sets the resolution of the image. This is not absolutely
+            // necessary but still improves the in it resulting product.
+            renderer.setPixelRatio(window.devicePixelRatio);
 
             // Finally the renderer's DOM element is appended to the
             // navbarIndicator DOM element reference. In other words there

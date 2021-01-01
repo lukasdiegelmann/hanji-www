@@ -1,0 +1,27 @@
+@import "../../../../@assets/styles/lib.scss";
+
+.liquid-button {
+    @include maxSize();
+    @include createGridOverlay();
+
+    overflow: hidden;
+}
+
+.liquid-button__text-container {
+    @include attachToGridOverlay(1);
+    @include centerChildren();
+
+    z-index: 1;
+}
+
+.liquid-button__text {
+    font-weight: normal;
+    color: white;
+    font-family: "Source Han Serif Heavy";
+    letter-spacing: 0.4rem;
+}
+
+.liquid-button__liquid {
+    @include attachToGridOverlay(0);
+    @include liquidize();
+}

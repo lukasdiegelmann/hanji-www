@@ -16,28 +16,58 @@
     user-select: none;
 }
 
+::-webkit-scrollbar {
+    background-color: white;
+    width: 15px;
+}
+
+::-webkit-scrollbar:horizontal {
+    display: none;
+}
+
+::-webkit-scrollbar-button {
+    height: 1%;
+    background-color: $secondaryColor;
+}
+
+::-webkit-scrollbar-button:hover {
+    background-color: $primaryColor;
+}
+
+::-webkit-scrollbar-track {
+    background-color: $backgroundColor;
+    box-shadow: inset 0 0 5px black;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: $secondaryColor;
+}
+
 .skeleton {
     display: grid;
     grid-template-columns: [col0] 100% [col1];
-    grid-template-rows: [row0] 15% [row1] 85% [row2];
+    grid-template-rows: [row0] minmax(100px, 15%) [row1] minmax(auto, auto) [row2];
     width: 100vw;
     height: 100vh;
 }
 
 .header {
     grid-area: row0 / col0 / row1 / col1;
+    min-height: 100px;
 }
 
 .complex {
     grid-area: row1 / col0 / row2 / col1;
     display: flex;
     flex-direction: column;
+    overflow-y: scroll;
 }
 
 .footer {
-    flex-shrink: 0;
+    width: 100%;
+    height: 300px;
 }
 
 .content {
-    flex: 1 0 auto;
+    flex: 1;
 }

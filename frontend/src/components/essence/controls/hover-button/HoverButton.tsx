@@ -2,9 +2,9 @@
  * @author lukasdiegelmann
  */
 
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import useStyles from "../../../../@utils/useStyles";
-import useRelativeToWindowSize from "../../../../@utils/useRelativeToWindowSize";
+import useRelativeToComponent from "../../../../@utils/useRelativeToWindowSize";
 import scss from "./HoverButton.module.scss";
 
 type Props = {
@@ -14,12 +14,14 @@ type Props = {
         crosshaired: boolean;
         underlined: boolean;
     }>;
+    id?: string;
 };
 
 const HoverButton: React.FunctionComponent<Props> = (props) => {
+    const hoverButtonRef = useRef<HTMLDivElement>(null);
+
     const styles = useStyles({
         hoverButton: {
-            borderWidth: "0px",
             cursor: props.appearance?.crosshaired ? "crosshair" : "default",
         },
         hoverButtonText: {
@@ -27,83 +29,96 @@ const HoverButton: React.FunctionComponent<Props> = (props) => {
             textDecoration: `${
                 props.appearance?.underlined ? "underline" : "none"
             }`,
+            letterSpacing: "0px",
+            marginRight: "0px",
         },
         hoverButtonTitle: {
             filter: "opacity(0%)",
             fontSize: "0px",
         },
         hoverButtonClickLeft: {
-            transform: "translate3d(-100%, 0, 0)",
+            transform: "translate3d(calc(-100% - 1px), 0, 0)",
         },
         hoverButtonClickRight: {
-            transform: "translate3d(100%, 0, 0)",
+            transform: "translate3d(calc(100% + 1px), 0, 0)",
         },
     });
 
     const handleClick = useCallback(() => {
-        styles.set([
-            {
-                __id: "0:0",
-                __tOffset: 0,
-                hoverButtonClickLeft: {
-                    transform: "translate3d(-49%, 0, 0)" as any,
+        styles.set(
+            [
+                {
+                    __id: "0:0",
+                    __tOffset: 0,
+                    hoverButtonClickLeft: {
+                        transform: "translate3d(-49%, 0, 0)" as any,
+                    },
+                    hoverButtonClickRight: {
+                        transform: "translate3d(49%, 0, 0)" as any,
+                    },
                 },
-                hoverButtonClickRight: {
-                    transform: "translate3d(49%, 0, 0)" as any,
+                {
+                    __id: "0:1",
+                    __tOffset: 700,
+                    hoverButtonTitle: {
+                        filter: "opacity(100%)" as any,
+                    },
                 },
-            },
-            {
-                __id: "0:1",
-                __tOffset: 700,
-                hoverButtonTitle: {
-                    filter: "opacity(100%)" as any,
+                {
+                    __id: "0:2",
+                    __tOffset: 600,
+                    hoverButtonTitle: {
+                        filter: "opacity(0%)",
+                    },
                 },
-            },
-            {
-                __id: "0:2",
-                __tOffset: 600,
-                hoverButtonTitle: {
-                    filter: "opacity(0%)",
+                {
+                    __id: "0:3",
+                    __tOffset: 400,
+                    hoverButtonClickLeft: {
+                        transform: "translate3d(calc(-100% - 1px), 0, 0)",
+                    },
+                    hoverButtonClickRight: {
+                        transform: "translate3d(calc(100% + 1px), 0, 0)",
+                    },
                 },
-            },
-            {
-                __id: "0:3",
-                __tOffset: 400,
-                hoverButtonClickLeft: {
-                    transform: "translate3d(-100%, 0, 0)",
-                },
-                hoverButtonClickRight: {
-                    transform: "translate3d(100%, 0, 0)",
-                },
-            },
-        ]);
+            ],
+            { isSafe: true }
+        );
     }, [styles]);
 
-    useRelativeToWindowSize([
+    useRelativeToComponent([
         {
-            options: {
+            ref: hoverButtonRef,
+            orientation: {
                 width: 1920,
                 height: 1080,
-                scalar: 20,
             },
-            handle: (scalar) => {
+            options: {
+                scalar: 80,
+            },
+            handle: (result) => {
                 styles.set({
                     hoverButtonText: {
-                        fontSize: `${scalar}px` as any,
+                        fontSize: `${result}px` as any,
+                        letterSpacing: `${result * 0.7}px` as any,
+                        marginRight: `-${result * 0.7}px` as any,
                     },
                 });
             },
         },
         {
-            options: {
+            ref: hoverButtonRef,
+            orientation: {
                 width: 1920,
                 height: 1080,
-                scalar: 30,
             },
-            handle: (scalar) => {
+            options: {
+                scalar: 140,
+            },
+            handle: (result) => {
                 styles.set({
                     hoverButtonTitle: {
-                        fontSize: `${scalar}px` as any,
+                        fontSize: `${result}px` as any,
                     },
                 });
             },
@@ -112,6 +127,7 @@ const HoverButton: React.FunctionComponent<Props> = (props) => {
 
     return (
         <div
+            ref={hoverButtonRef}
             className={scss["hover-button"]}
             style={styles.get().hoverButton}
             onClick={handleClick}

@@ -3,6 +3,6 @@
 .link-mask {
     @include maxSize();
 
-    color: black;
+    color: $backgroundColor;
     text-decoration: none;
 }

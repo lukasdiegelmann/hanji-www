@@ -4,7 +4,7 @@
     @include maxSize();
     @include createGridOverlay();
 
-    background-color: black;
+    background-color: $backgroundColor;
 }
 
 .hover-button__text-container {
@@ -14,7 +14,8 @@
 
 .hover-button__text {
     color: white;
-    font-family: "Source Han Serif Heavy";
+    text-transform: capitalize;
+    font-family: "Source Han Serif Regular";
 }
 
 .hover-button__title-container {
@@ -23,9 +24,8 @@
 }
 
 .hover-button__title {
-    color: black;
+    color: $backgroundColor;
     font-family: "Source Han Serif Heavy";
-
     transition: filter $animationDuration * 0.5 ease;
 }
 

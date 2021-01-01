@@ -2,63 +2,90 @@
  * @author lukasdiegelmann
  */
 
-import { useCallback, useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import useClean from "./useClean";
+
+type Configuration = {
+    ref: React.RefObject<HTMLDivElement | null>;
+    orientation: { width: number; height: number };
+    options?: Partial<{
+        scalar: number;
+        lessThanOrEqualTo: boolean;
+        debug: any;
+    }>;
+    handle: (
+        result: number,
+        debug?: {
+            id: any;
+            current: { width: number; height: number };
+            orientation: { width: number; height: number };
+            options: { scalar: number; lessThanOrEqualTo: boolean };
+            result: number;
+        }
+    ) => void;
+};
 
 // A react hook that allows one to adjust pixel sizes relative to the window
 // size. The hook accepts an array of configs, which again contain a function
 // (called a handle) and an options object (though almost every option is
-// requiered).
-const useRelativeToWindowSize = (
-    configs: {
-        options: {
-            width: number;
-            height: number;
-            scalar: number;
-            comparisonMode?: "greaterOrEqualTo" | "lessOrEqualTo";
-        };
-        handle: (scalar: number) => void;
-    }[]
-) => {
+// required).
+const useRelativeToComponent = (configs: Configuration[]) => {
     const clean = useClean();
+    const [hasBeenExecuted, setHasBeenExecuted] = useState(false);
 
-    const hasExecuted = useRef(false);
+    const polishOptions = useCallback((options: Configuration["options"]) => {
+        return {
+            scalar: options?.scalar ?? 1,
+            lessThanOrEqualTo: options?.lessThanOrEqualTo ?? false,
+        };
+    }, []);
 
-    const handleExecution = useCallback(() => {
-        hasExecuted.current = true;
-
+    const handleComputing = useCallback(() => {
         configs.forEach((config) => {
-            const relWidth = window.innerWidth / config.options.width;
-            const relHeight = window.innerHeight / config.options.height;
+            const options = polishOptions(config.options);
 
-            const getGreaterOrEqualTo = () =>
-                relWidth > relHeight ? relWidth : relHeight;
+            if (config.ref.current) {
+                const width =
+                    config.ref.current.clientWidth / config.orientation.width;
+                const height =
+                    config.ref.current.clientHeight / config.orientation.height;
 
-            const getLessOrEqualTo = () =>
-                relWidth < relHeight ? relWidth : relHeight;
+                const getGreaterThanOrEqualTo = () =>
+                    width >= height ? width : height;
+                const getLessThanOrEqualTo = () =>
+                    width <= height ? width : height;
 
-            const relValue =
-                config.options.comparisonMode === "greaterOrEqualTo"
-                    ? getGreaterOrEqualTo()
-                    : getLessOrEqualTo();
+                const result =
+                    (!options.lessThanOrEqualTo
+                        ? getGreaterThanOrEqualTo()
+                        : getLessThanOrEqualTo()) * options.scalar;
 
-            config.handle(relValue * config.options.scalar);
+                config.handle(result, {
+                    id: config.options?.debug,
+                    current: { width, height },
+                    orientation: { ...config.orientation },
+                    options,
+                    result,
+                });
+            }
         });
-    }, [configs]);
+    }, [polishOptions, configs]);
 
     useEffect(() => {
-        if (!hasExecuted.current) {
-            handleExecution();
+        if (!hasBeenExecuted) {
+            handleComputing();
+            setHasBeenExecuted(true);
         }
+        const handleWindowResize = () => handleComputing();
 
-        window.addEventListener("resize", handleExecution);
+        window.addEventListener("resize", handleWindowResize);
 
         clean.add(() => {
-            window.removeEventListener("resize", handleExecution);
+            window.removeEventListener("resize", handleWindowResize);
         });
 
         return clean.exec;
-    }, [clean, handleExecution]);
+    }, [clean, handleComputing, hasBeenExecuted]);
 };
 
-export default useRelativeToWindowSize;
+export default useRelativeToComponent;

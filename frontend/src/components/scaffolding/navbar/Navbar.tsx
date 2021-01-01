@@ -69,7 +69,6 @@ const Navbar: React.FunctionComponent = () => {
                                 <HoverButton
                                     {...config}
                                     appearance={{
-                                        underlined: true,
                                         crosshaired: true,
                                     }}
                                 ></HoverButton>
