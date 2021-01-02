@@ -1,0 +1,20 @@
+@import "../../../../@assets/styles/lib.scss";
+
+.pagify {
+    @include maxSize();
+
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+.pagify__content {
+    flex: 1;
+}
+
+.pagify__footer {
+    width: 100%;
+    height: 300px;
+    margin-top: 300px;
+    user-select: none;
+}

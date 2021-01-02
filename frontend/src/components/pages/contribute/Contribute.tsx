@@ -1,6 +1,6 @@
 import React from "react";
 
-const Contribute: React.FunctionComponent = (props) => {
+const Contribute: React.FunctionComponent = () => {
     return <div>Contribute</div>;
 };
 

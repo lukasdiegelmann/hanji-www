@@ -1,6 +1,6 @@
 import React from "react";
 
-const Docs: React.FunctionComponent = (props) => {
+const Docs: React.FunctionComponent = () => {
     return <div></div>;
 };
 

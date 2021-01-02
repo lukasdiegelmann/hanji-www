@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Message from "../../essence/displays/message/Message";
 import Navbar from "../navbar/Navbar";
 import scss from "./Skeleton.module.scss";
@@ -10,18 +10,17 @@ const Setup = React.lazy(() => import("../../pages/setup/Setup"));
 const Contribute = React.lazy(
     () => import("../../pages/contribute/Contribute")
 );
-const Footer = React.lazy(() => import("../footer/Footer"));
 
 const Skeleton: React.FunctionComponent = () => {
     return (
         <Router>
             <div className={scss["skeleton"]}>
-                <div className={scss["header"]}>
+                <div className={scss["skeleton__header"]}>
                     <Navbar />
                 </div>
-                <div className={scss["complex"]}>
+                <div className={scss["skeleton__content"]}>
                     <Suspense fallback={<Message />}>
-                        <div className={scss["content"]}>
+                        <Switch>
                             <Route exact path="/" component={Home} />
                             <Route exact path="/docs" component={Docs} />
                             <Route
@@ -30,10 +29,18 @@ const Skeleton: React.FunctionComponent = () => {
                                 component={Contribute}
                             />
                             <Route exact path="/setup" component={Setup} />
-                        </div>
-                        <div className={scss["footer"]}>
-                            <Footer />
-                        </div>
+                            <Route
+                                component={() => (
+                                    <Message
+                                        content={{
+                                            text: "Not Found",
+                                            title: "無い",
+                                            to: "/",
+                                        }}
+                                    />
+                                )}
+                            />
+                        </Switch>
                     </Suspense>
                 </div>
             </div>

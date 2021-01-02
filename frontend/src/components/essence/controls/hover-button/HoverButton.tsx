@@ -3,8 +3,9 @@
  */
 
 import React, { useCallback, useEffect, useRef } from "react";
+import { withRouter, RouteComponentProps } from "react-router-dom";
 import useStyles from "../../../../@utils/useStyles";
-import useRelativeToComponent from "../../../../@utils/useRelativeToWindowSize";
+import useRelativeToComponent from "../../../../@utils/useRelativeToComponent";
 import scss from "./HoverButton.module.scss";
 
 type Props = {
@@ -13,9 +14,10 @@ type Props = {
     appearance?: Partial<{
         crosshaired: boolean;
         underlined: boolean;
+        letterspacing: boolean;
     }>;
-    id?: string;
-};
+    to?: string;
+} & RouteComponentProps;
 
 const HoverButton: React.FunctionComponent<Props> = (props) => {
     const hoverButtonRef = useRef<HTMLDivElement>(null);
@@ -67,6 +69,11 @@ const HoverButton: React.FunctionComponent<Props> = (props) => {
                 {
                     __id: "0:2",
                     __tOffset: 600,
+                    __middleware: () => {
+                        if (props.to) {
+                            props.history.push(props.to);
+                        }
+                    },
                     hoverButtonTitle: {
                         filter: "opacity(0%)",
                     },
@@ -84,7 +91,7 @@ const HoverButton: React.FunctionComponent<Props> = (props) => {
             ],
             { isSafe: true }
         );
-    }, [styles]);
+    }, [styles, props.history, props.to]);
 
     useRelativeToComponent([
         {
@@ -100,7 +107,9 @@ const HoverButton: React.FunctionComponent<Props> = (props) => {
                 styles.set({
                     hoverButtonText: {
                         fontSize: `${result}px` as any,
-                        letterSpacing: `${result * 0.7}px` as any,
+                        letterSpacing: props.appearance?.letterspacing
+                            ? `${result * 0.7}px`
+                            : ("0px" as any),
                         marginRight: `-${result * 0.7}px` as any,
                     },
                 });
@@ -124,6 +133,12 @@ const HoverButton: React.FunctionComponent<Props> = (props) => {
             },
         },
     ]);
+
+    useEffect(() => {
+        return () => {
+            styles.clear("0");
+        };
+    }, []);
 
     return (
         <div
@@ -162,4 +177,4 @@ const HoverButton: React.FunctionComponent<Props> = (props) => {
     );
 };
 
-export default HoverButton;
+export default withRouter(HoverButton);

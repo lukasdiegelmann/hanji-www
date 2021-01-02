@@ -70,6 +70,7 @@ const Navbar: React.FunctionComponent = () => {
                                     {...config}
                                     appearance={{
                                         crosshaired: true,
+                                        letterspacing: true,
                                     }}
                                 ></HoverButton>
                             </LinkMask>

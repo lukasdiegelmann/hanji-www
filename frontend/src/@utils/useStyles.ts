@@ -14,11 +14,12 @@ type SetInput<T> =
     | (RecursivePartial<T> & {
           __id: string /* => `${number}:${number}` */;
           __tOffset: number;
-          __isSafe?: boolean;
+          __middleware?: () => void;
       })
     | (RecursivePartial<T> & {
           __id: string /* => `${number}:${number}` */;
           __tOffset: number;
+          __middleware?: () => void;
       })[];
 
 const deepMerge = (...sources: any) => {
@@ -69,10 +70,16 @@ const useStyles = <T extends MapComponentToStyles>(mapComponentToStyles: T) => {
         if (input instanceof Array) {
             if (validateNewTimeline(input[0].__id, options?.isSafe)) {
                 for (let i = { i: 0, k: 0 }; i.i < input.length; i.i++) {
-                    const { __tOffset, __id, ...slice } = input[i.i];
+                    const { __tOffset, __id, __middleware, ...slice } = input[
+                        i.i
+                    ];
                     i.k += __tOffset;
 
                     timeouts.current[__id] = setTimeout(() => {
+                        if (typeof __middleware === "function") {
+                            __middleware();
+                        }
+
                         const result = deepMerge(
                             stateRef.current,
                             slice
@@ -85,9 +92,13 @@ const useStyles = <T extends MapComponentToStyles>(mapComponentToStyles: T) => {
             }
         } else if (input.__tOffset) {
             if (validateNewTimeline(input.__id as string, options?.isSafe)) {
-                const { __tOffset, __id, ...slice } = input;
+                const { __tOffset, __id, __middleware, ...slice } = input;
 
                 timeouts.current[__id as string] = setTimeout(() => {
+                    if (typeof __middleware === "function") {
+                        __middleware();
+                    }
+
                     const result = deepMerge(stateRef.current, slice) as any;
                     stateRef.current = result;
                     setState(result);

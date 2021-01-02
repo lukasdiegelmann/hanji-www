@@ -5,6 +5,7 @@
     @include createGridOverlay();
 
     background-color: $backgroundColor;
+    user-select: none;
 }
 
 .hover-button__text-container {

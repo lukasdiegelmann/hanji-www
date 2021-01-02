@@ -1,6 +1,5 @@
 import React from "react";
 import Particles from "react-tsparticles";
-import LinkMask from "../../wrappers/link-mask/LinkMask";
 import HoverButton from "../../controls/hover-button/HoverButton";
 import particlesConfig from "./particles.config.json";
 import scss from "./Message.module.scss";
@@ -22,12 +21,10 @@ const Message: React.FunctionComponent<Props> = (props) => {
             />
             {props.content ? (
                 <div className={scss["message__content"]}>
-                    <LinkMask {...props.content}>
-                        <HoverButton
-                            {...props.content}
-                            appearance={{ underlined: true }}
-                        ></HoverButton>
-                    </LinkMask>
+                    <HoverButton
+                        {...props.content}
+                        appearance={{ letterspacing: true }}
+                    ></HoverButton>
                 </div>
             ) : null}
         </div>

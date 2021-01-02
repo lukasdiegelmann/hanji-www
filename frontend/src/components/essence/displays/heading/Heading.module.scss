@@ -1,0 +1,53 @@
+@import "../../../../@assets/styles/lib.scss";
+
+.heading {
+    display: inline-grid;
+    grid-template-columns: [col0] auto [col1];
+    grid-template-rows: [row0] auto [row1];
+    width: 100%;
+    height: fit-content;
+}
+
+.heading__background {
+    @include attachToGridOverlay(0);
+
+    background-color: #fada5e;
+    transition: filter $animationDuration * 0.5 ease;
+}
+
+.heading__text-container {
+    @include attachToGridOverlay(1);
+    @include centerChildren();
+
+    margin: auto;
+    text-align: center;
+    flex-direction: column;
+}
+
+.heading__text {
+    color: $backgroundColor;
+    padding: 0 15px 0 15px;
+    font-family: "Noe Display Bold";
+}
+
+.heading__paragraph-wrapper {
+    @include attachToGridOverlay(2);
+    @include centerChildren();
+
+    width: 10%;
+    filter: opacity(0%);
+    transition: filter $animationDuration * 0.5 ease;
+}
+
+.heading:hover .heading__paragraph-wrapper {
+    filter: opacity(100%);
+}
+
+.heading__paragraph-container {
+    @include maxSize();
+    @include centerChildren();
+}
+
+.heading__paragraph {
+    font-family: "Noe Display";
+}

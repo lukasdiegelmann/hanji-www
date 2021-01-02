@@ -60,13 +60,15 @@ const useRelativeToComponent = (configs: Configuration[]) => {
                         ? getGreaterThanOrEqualTo()
                         : getLessThanOrEqualTo()) * options.scalar;
 
-                config.handle(result, {
-                    id: config.options?.debug,
-                    current: { width, height },
-                    orientation: { ...config.orientation },
-                    options,
-                    result,
-                });
+                if (result) {
+                    config.handle(result, {
+                        id: config.options?.debug,
+                        current: { width, height },
+                        orientation: { ...config.orientation },
+                        options,
+                        result,
+                    });
+                }
             }
         });
     }, [polishOptions, configs]);

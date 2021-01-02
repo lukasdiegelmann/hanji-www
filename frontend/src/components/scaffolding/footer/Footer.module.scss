@@ -45,10 +45,16 @@
     .footer__link {
         width: 20%;
         height: 20%;
+        min-width: 200px;
+        min-height: 50px;
     }
 }
 
 @media only screen and (max-width: 768px) {
+    .footer__link-container {
+        flex-direction: column;
+    }
+
     .footer__link {
         width: 50%;
         height: 20%;

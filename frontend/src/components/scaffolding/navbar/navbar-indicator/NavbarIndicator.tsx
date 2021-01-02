@@ -217,8 +217,8 @@ const NavbarIndicator: React.FunctionComponent<
                 // value be 'true' the cube will rotate faster the if it were
                 // 'false'.
                 if (props.isLoading) {
-                    cube.rotation.x += Math.PI / 180;
-                    cube.rotation.y += Math.PI / 180;
+                    cube.rotation.x += Math.PI / 100;
+                    cube.rotation.y += Math.PI / 100;
                 } else {
                     cube.rotation.x += Math.PI / 380;
                     cube.rotation.y += Math.PI / 380;

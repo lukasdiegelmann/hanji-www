@@ -10,19 +10,26 @@
     "../fonts/SourceHanSerif-Regular.otf"
 );
 
-@include polishDom();
-
-* {
-    user-select: none;
+@font-face {
+    font-family: "Noe Display Bold";
+    src: url("//db.onlinewebfonts.com/t/30a71dcf9a1c39558ca4e97c92a4b2fa.eot");
+    src: url("//db.onlinewebfonts.com/t/30a71dcf9a1c39558ca4e97c92a4b2fa.eot?#iefix")
+            format("embedded-opentype"),
+        url("//db.onlinewebfonts.com/t/30a71dcf9a1c39558ca4e97c92a4b2fa.woff2")
+            format("woff2"),
+        url("//db.onlinewebfonts.com/t/30a71dcf9a1c39558ca4e97c92a4b2fa.woff")
+            format("woff"),
+        url("//db.onlinewebfonts.com/t/30a71dcf9a1c39558ca4e97c92a4b2fa.ttf")
+            format("truetype"),
+        url("//db.onlinewebfonts.com/t/30a71dcf9a1c39558ca4e97c92a4b2fa.svg#Noe Display Bold")
+            format("svg");
 }
+
+@include polishDom();
 
 ::-webkit-scrollbar {
     background-color: white;
     width: 15px;
-}
-
-::-webkit-scrollbar:horizontal {
-    display: none;
 }
 
 ::-webkit-scrollbar-button {
@@ -34,6 +41,10 @@
     background-color: $primaryColor;
 }
 
+::-webkit-scrollbar-corner {
+    background-color: $backgroundColor;
+}
+
 ::-webkit-scrollbar-track {
     background-color: $backgroundColor;
     box-shadow: inset 0 0 5px black;
@@ -43,31 +54,25 @@
     background-color: $secondaryColor;
 }
 
+::selection {
+    background-color: rgba($color: $primaryColor, $alpha: 0.8);
+}
+
 .skeleton {
     display: grid;
     grid-template-columns: [col0] 100% [col1];
-    grid-template-rows: [row0] minmax(100px, 15%) [row1] minmax(auto, auto) [row2];
+    grid-template-rows: [row0] minmax(100px, 15%) [row1] 1fr [row2];
     width: 100vw;
     height: 100vh;
 }
 
-.header {
+.skeleton__header {
     grid-area: row0 / col0 / row1 / col1;
-    min-height: 100px;
+    user-select: none;
 }
 
-.complex {
+.skeleton__content {
     grid-area: row1 / col0 / row2 / col1;
-    display: flex;
-    flex-direction: column;
-    overflow-y: scroll;
-}
-
-.footer {
-    width: 100%;
-    height: 300px;
-}
-
-.content {
-    flex: 1;
+    min-height: 0;
+    height: 100%;
 }

@@ -1,6 +1,5 @@
 import React, { useMemo } from "react";
 import HoverButton from "../../essence/controls/hover-button/HoverButton";
-import LinkMask from "../../essence/wrappers/link-mask/LinkMask";
 import NavbarIndicator from "../navbar/navbar-indicator/NavbarIndicator";
 import scss from "./Footer.module.scss";
 
@@ -29,9 +28,7 @@ const Footer: React.FunctionComponent = () => {
             <div className={scss["footer__link-container"]}>
                 {footerLinkConfigs.map((config, i) => (
                     <div key={i} className={scss["footer__link"]}>
-                        <LinkMask to={config.to}>
-                            <HoverButton {...config}></HoverButton>
-                        </LinkMask>
+                        <HoverButton {...config}></HoverButton>
                     </div>
                 ))}
             </div>
