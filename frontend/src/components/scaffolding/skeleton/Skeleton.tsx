@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Message from "../../essence/displays/message/Message";
 import Navbar from "../navbar/Navbar";
+import Player from "../player/Player";
 import scss from "./Skeleton.module.scss";
 
 const Home = React.lazy(() => import("../../pages/home/Home"));
@@ -43,6 +44,7 @@ const Skeleton: React.FunctionComponent = () => {
                         </Switch>
                     </Suspense>
                 </div>
+                <Player />
             </div>
         </Router>
     );

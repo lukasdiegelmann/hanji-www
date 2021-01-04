@@ -1,29 +1,32 @@
-@import "../../../@assets/styles/lib.scss";
+@import "../../../@assets/.scss/lib.scss";
 
+// The relative paths are resolved relatively to the mixin's definition. That is
+// in the @assets/styles folder therefore the path is different to what it would
+// be considering the path of the current file.
 @include createFontFace(
     "Source Han Serif Heavy",
-    "../fonts/SourceHanSerif-Heavy.otf"
+    "../.otf/SourceHanSerif-Heavy.otf"
 );
 
 @include createFontFace(
     "Source Han Serif Regular",
-    "../fonts/SourceHanSerif-Regular.otf"
+    "../.otf/SourceHanSerif-Regular.otf"
 );
 
-@font-face {
-    font-family: "Noe Display Bold";
-    src: url("//db.onlinewebfonts.com/t/30a71dcf9a1c39558ca4e97c92a4b2fa.eot");
-    src: url("//db.onlinewebfonts.com/t/30a71dcf9a1c39558ca4e97c92a4b2fa.eot?#iefix")
-            format("embedded-opentype"),
-        url("//db.onlinewebfonts.com/t/30a71dcf9a1c39558ca4e97c92a4b2fa.woff2")
-            format("woff2"),
-        url("//db.onlinewebfonts.com/t/30a71dcf9a1c39558ca4e97c92a4b2fa.woff")
-            format("woff"),
-        url("//db.onlinewebfonts.com/t/30a71dcf9a1c39558ca4e97c92a4b2fa.ttf")
-            format("truetype"),
-        url("//db.onlinewebfonts.com/t/30a71dcf9a1c39558ca4e97c92a4b2fa.svg#Noe Display Bold")
-            format("svg");
-}
+@include createFontFace(
+    "Theano Didot Regular",
+    "../.ttf/TheanoDidot-Regular.ttf"
+);
+
+// This font face is imported from a CDN (Content Delivery Network) and is
+// copyrighted and therefore the reason why this website may not be published.
+//
+// For more information see https://www.schick-toikka.com/noe-display, the
+// official website of the font face.
+@include createFontFace(
+    "Noe Display Bold",
+    "//db.onlinewebfonts.com/t/30a71dcf9a1c39558ca4e97c92a4b2fa.eot"
+);
 
 @include polishDom();
 
@@ -47,7 +50,6 @@
 
 ::-webkit-scrollbar-track {
     background-color: $backgroundColor;
-    box-shadow: inset 0 0 5px black;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -69,10 +71,13 @@
 .skeleton__header {
     grid-area: row0 / col0 / row1 / col1;
     user-select: none;
+    z-index: 1;
 }
 
 .skeleton__content {
     grid-area: row1 / col0 / row2 / col1;
+    overflow: hidden;
     min-height: 0;
     height: 100%;
+    z-index: 0;
 }

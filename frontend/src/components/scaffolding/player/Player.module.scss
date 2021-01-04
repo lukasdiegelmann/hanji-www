@@ -1,0 +1,32 @@
+@import "../../../@assets/.scss/lib.scss";
+
+.player {
+    @include createGridOverlay();
+
+    grid-area: row0 / col0 / row2 / col1;
+    z-index: 2;
+    transition: transform 500ms cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.player__background {
+    @include attachToGridOverlay(0);
+
+    background-color: $backgroundColor;
+    filter: opacity(80%);
+}
+
+.player__foreground {
+    @include attachToGridOverlay(1);
+    @include createGridOverlay();
+
+    visibility: hidden;
+}
+
+.player__video {
+    @include attachToGridOverlay(0);
+    @include centerSelf();
+
+    width: 90% !important;
+    height: 90% !important;
+    visibility: visible;
+}

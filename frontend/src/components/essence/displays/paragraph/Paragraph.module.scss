@@ -1,0 +1,10 @@
+@import "../../../../@assets/.scss/lib.scss";
+
+.paragraph {
+    padding: 2rem;
+}
+
+.paragraph__text {
+    color: $backgroundColor;
+    font-family: "Source Han Serif Regular";
+}

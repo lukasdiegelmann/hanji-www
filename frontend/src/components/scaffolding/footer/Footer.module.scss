@@ -1,62 +1,67 @@
-@import "../../../@assets/styles/lib.scss";
+@import "../../../@assets/.scss/lib.scss";
 
-.footer {
+.footer-container {
+    @include maxSize();
+
     display: grid;
     grid-template-columns: [col0] 100% [col1];
-    grid-template-rows: [row0] 20% [row1] 70% [row2] 10% [row3];
-    width: 100%;
-    height: 100%;
-    background-color: $backgroundColor;
+    grid-template-rows: [row0] 2% [row1] 98% [row2];
 }
 
-.footer__logo {
-    @include centerChildren();
-
+.footer-container__border {
     grid-area: row0 / col0 / row1 / col1;
-}
-
-.footer__link-container {
-    @include centerChildren();
-
-    grid-area: row1 / col0 / row2 / col1;
-}
-
-.footer__link {
-    margin: 1%;
-    box-shadow: 0 0 6px 1px black;
-}
-
-.footer__notices-container {
-    @include centerChildren();
-
-    grid-area: row2 / col0 / row3 / col1;
-    background-color: $backgroundColor;
+    background-color: white;
     filter: brightness(80%);
 }
 
-.footer__notices {
-    color: white;
-    font-weight: normal;
-    font-size: 13px;
-    font-family: "Source Han Serif Regular";
+.footer {
+    grid-area: row1 / col0 / row2 / col1;
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
 }
 
-@media only screen and (min-width: 768px) {
-    .footer__link {
-        width: 20%;
-        height: 20%;
-        min-width: 200px;
-        min-height: 50px;
+.footer__logo-container {
+    display: flex;
+    box-sizing: border-box;
+    padding: 2rem;
+    flex: 1 1 auto;
+    justify-content: center;
+}
+
+.footer__logo {
+    align-self: baseline;
+    width: 70px;
+    -webkit-user-drag: none;
+    filter: invert(100%) opacity(90%);
+}
+
+.footer__child {
+    padding: 2rem;
+    flex: 1 1 auto;
+    box-sizing: border-box;
+}
+
+@media only screen and (min-width: 768px) and (hover: hover) and (pointer: fine) {
+    .footer__logo-container {
+        width: 10%;
+    }
+
+    .footer__child {
+        width: 30%;
     }
 }
 
-@media only screen and (max-width: 768px) {
-    .footer__link-container {
-        flex-direction: column;
+@media only screen and (max-width: 768px), (hover: none) and (pointer: coarse) {
+    .footer {
+        flex-wrap: wrap;
     }
 
-    .footer__link {
+    .footer__logo-container {
+        width: 100%;
+    }
+
+    .footer__child {
         width: 50%;
-        height: 20%;
     }
 }

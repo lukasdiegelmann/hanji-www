@@ -1,4 +1,4 @@
-@import "../../../../@assets/styles/lib.scss";
+@import "../../../../@assets/.scss/lib.scss";
 
 .pagify {
     @include maxSize();
@@ -15,6 +15,6 @@
 .pagify__footer {
     width: 100%;
     height: 300px;
-    margin-top: 300px;
+    margin-top: 100px;
     user-select: none;
 }

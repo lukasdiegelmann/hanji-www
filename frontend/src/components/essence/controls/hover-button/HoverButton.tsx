@@ -15,6 +15,7 @@ type Props = {
         crosshaired: boolean;
         underlined: boolean;
         letterspacing: boolean;
+        inverted: boolean;
     }>;
     to?: string;
 } & RouteComponentProps;
@@ -25,6 +26,7 @@ const HoverButton: React.FunctionComponent<Props> = (props) => {
     const styles = useStyles({
         hoverButton: {
             cursor: props.appearance?.crosshaired ? "crosshair" : "default",
+            backgroundColor: props.appearance?.inverted ? "white" : "#141414",
         },
         hoverButtonText: {
             fontSize: "0px",
@@ -33,6 +35,7 @@ const HoverButton: React.FunctionComponent<Props> = (props) => {
             }`,
             letterSpacing: "0px",
             marginRight: "0px",
+            color: props.appearance?.inverted ? "#141414" : "white",
         },
         hoverButtonTitle: {
             filter: "opacity(0%)",

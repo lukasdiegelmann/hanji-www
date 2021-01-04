@@ -1,0 +1,22 @@
+@import "../../../../@assets/.scss/lib.scss";
+
+.video-container {
+    @include createGridOverlay();
+
+    width: 100%;
+}
+
+.video-container__foreground {
+    @include attachToGridOverlay(1);
+    @include centerChildren();
+
+    padding: 1%;
+}
+
+.video-container__background {
+    @include attachToGridOverlay(0);
+}
+
+.video {
+    @include maxSize();
+}

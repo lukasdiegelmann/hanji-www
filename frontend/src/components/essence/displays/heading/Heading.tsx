@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
+import CSS from "csstype";
 import LinkMask from "../../wrappers/link-mask/LinkMask";
 import useStyles from "../../../../@utils/useStyles";
 import useRelativeToComponent from "../../../../@utils/useRelativeToComponent";
@@ -10,9 +11,10 @@ type Props = {
     children: string;
     options?: Partial<{
         attachable: boolean;
-        underlined: boolean;
+        keepSize: boolean;
         backdropped: boolean;
         subtitle: string;
+        style: CSS.Properties;
     }>;
 };
 
@@ -30,10 +32,10 @@ const Heading: React.FunctionComponent<Props> = (props) => {
         },
         headingText: {
             fontSize: `${200 / 2 ** props.class}px`,
-            textDecoration: props.options?.underlined ? "underline" : "none",
             color: props.options?.backdropped ? "white" : "inherit",
             backgroundColor: props.options?.backdropped ? "#141414" : "inherit",
             borderRadius: props.options?.backdropped ? "1.5%" : "0%",
+            ...props.options?.style,
         },
     });
 
@@ -48,20 +50,23 @@ const Heading: React.FunctionComponent<Props> = (props) => {
                 scalar: 1.4,
             },
             handle: (result) => {
-                styles.set({
-                    heading: {
-                        height: `${(400 / 2 ** props.class) * result}px`,
-                    },
-                    headingText: {
-                        fontSize: `${(200 / 2 ** props.class) * result}px`,
-                    },
-                });
+                if (!props.options?.keepSize) {
+                    styles.set({
+                        heading: {
+                            height: `${(400 * result) / 2 ** props.class}px`,
+                        },
+                        headingText: {
+                            fontSize: `${(200 * result) / 2 ** props.class}px`,
+                        },
+                    });
+                }
             },
         },
     ]);
 
     useEffect(() => {
         if (`#${props.children}` === `${decodeURIComponent(location.hash)}`) {
+            headingRef.current?.scrollIntoView();
             styles.set([
                 {
                     __id: "0:0",

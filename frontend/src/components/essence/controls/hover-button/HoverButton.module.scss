@@ -1,10 +1,9 @@
-@import "../../../../@assets/styles/lib.scss";
+@import "../../../../@assets/.scss/lib.scss";
 
 .hover-button {
     @include maxSize();
     @include createGridOverlay();
 
-    background-color: $backgroundColor;
     user-select: none;
 }
 
@@ -14,7 +13,6 @@
 }
 
 .hover-button__text {
-    color: white;
     text-transform: capitalize;
     font-family: "Source Han Serif Regular";
 }
