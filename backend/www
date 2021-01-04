@@ -1,0 +1,40 @@
+// This is to pass the variables specified in the '.env' file into the process
+// environment variables, so they can be used globally and securely.
+require("dotenv/config");
+
+// This is for the use in the development phase of the project as the fullstack
+// application will be located at two different ports (3000 for the client and
+// 9000 for the server).
+const cors = require("cors");
+
+// Express is imported and used as the api to create the backend rest api in
+// 'www'. Express is also compatible with graphql, but as that would take me to
+// much time to set up, this is how it's gonna be.
+//
+// For more information on 'express' see the official documentation
+// (http://expressjs.com/en/api.html).
+const express = require("express");
+
+// The routes are required here. These will be handling the responses on certain
+// request paths and methods. Also they won't be too complicated since this will
+// be a quite simple api.
+const commandsRouter = require("./routes/commands");
+
+// Now an express app is created calling the required express constant. This
+// will allow us to get more methods on the app object, which will make it
+// possible to listen to ports and therefore create an actual HTTP server.
+const app = express();
+
+// To prevent CORS issues as mentioned in the second comment block of this file.
+app.use(cors());
+
+// Here the routers will be used by the express application to make them
+// accessible by an user which will be the client of the fullstack application.
+app.use("/commands", commandsRouter);
+
+// This is the part were an HTTP server is created. The function is simply
+// passed two arguments, the first one the port it's going to listen to and the
+// second one a callback that will be called when the server has been setup.
+app.listen(process.env.PORT, () => {
+    console.log(`App listening on port ${process.env.PORT}!`);
+});

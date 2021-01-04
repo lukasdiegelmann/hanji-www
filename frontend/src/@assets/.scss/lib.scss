@@ -61,8 +61,8 @@ $animationDuration: 600ms;
         position: relative;
         width: 200%;
         padding-top: 200%;
-        top: -100px;
         left: 50%;
+        top: -500%;
         background-color: $backgroundColor;
         transform: translate(-50%, -75%);
         transition: all $animationDuration cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -99,7 +99,4 @@ $animationDuration: 600ms;
             transform: translate(-50%, -75%) rotate(360deg);
         }
     }
-}
-
-@mixin footerize() {
 }

@@ -1,0 +1,4 @@
+{
+    "help": "Prints out information about all available commands. Much like the Hanji Docs page does.",
+    "setup": "Takes a json setup template and converts it into a suitable bot setup for the guild/server the command has been executed in."
+}

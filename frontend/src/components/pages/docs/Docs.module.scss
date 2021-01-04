@@ -1,0 +1,45 @@
+@import "../../../@assets/.scss/lib.scss";
+
+.docs__entry {
+    @include createGridOverlay();
+
+    overflow: hidden;
+    cursor: crosshair;
+}
+
+.docs__entry__name-container {
+    @include attachToGridOverlay(0);
+    @include centerChildren();
+
+    padding: 1rem;
+    border-radius: 2%;
+}
+
+.docs__entry__desc-container {
+    @include attachToGridOverlay(1);
+
+    display: flex;
+    flex: 1 1 auto;
+    background-color: white;
+    transform: translate3d(0, -100%, 0);
+    transition: transform $animationDuration * 0.8 ease-in-out;
+}
+
+.docs__entry__desc__border-container {
+    @include centerChildren();
+
+    flex: 1 1 auto;
+    padding-left: 10px;
+    width: 10px;
+
+    &::before {
+        content: "";
+        width: 5px;
+        height: 80%;
+        background-color: $backgroundColor;
+    }
+}
+
+.docs__entry:hover .docs__entry__desc-container {
+    transform: translate3d(0, 0, 0);
+}
