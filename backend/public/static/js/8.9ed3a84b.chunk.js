@@ -1,0 +1,2 @@
+(this.webpackJsonpfrontend=this.webpackJsonpfrontend||[]).push([[8],{302:function(t,n,s){"use strict";s.r(n),n.default=s.p+"static/media/luffy-vs-blueno.114ba5d5.mp4"}}]);
+//# sourceMappingURL=8.9ed3a84b.chunk.js.map

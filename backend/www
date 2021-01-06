@@ -2,6 +2,8 @@
 // environment variables, so they can be used globally and securely.
 require("dotenv/config");
 
+const path = require("path");
+
 // This is for the use in the development phase of the project as the fullstack
 // application will be located at two different ports (3000 for the client and
 // 9000 for the server).
@@ -18,6 +20,7 @@ const express = require("express");
 // The routes are required here. These will be handling the responses on certain
 // request paths and methods. Also they won't be too complicated since this will
 // be a quite simple api.
+const indexRouter = require("./routes/index");
 const commandsRouter = require("./routes/commands");
 
 // Now an express app is created calling the required express constant. This
@@ -28,8 +31,11 @@ const app = express();
 // To prevent CORS issues as mentioned in the second comment block of this file.
 app.use(cors());
 
+app.use(express.static("public"));
+
 // Here the routers will be used by the express application to make them
 // accessible by an user which will be the client of the fullstack application.
+app.use("/", indexRouter);
 app.use("/commands", commandsRouter);
 
 // This is the part were an HTTP server is created. The function is simply
