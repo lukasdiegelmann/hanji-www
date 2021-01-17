@@ -19,7 +19,7 @@ type Props = ConnectedProps<typeof connector>;
 
 const Skeleton: React.FunctionComponent<Props> = (props) => {
     useEffect(() => {
-        fetch("http://192.168.178.26:9000/commands")
+        fetch("https://hanji-www.herokuapp.com/commands")
             .then((res) => res.json())
             .then((res) => {
                 props.updateCommands(res);
